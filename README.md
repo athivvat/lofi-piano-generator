@@ -1,2 +1,2 @@
-# lofi-thai-generator
+# Lo-Fi Thai Generator
 Lo-Fi Thai Generator
