@@ -1,2 +1,2 @@
-# Lo-Fi Thai Generator
-Lo-Fi Thai Generator
+# Lo-Fi Piano Generator 🎹 🎶
+Lo-Fi Piano Generator
