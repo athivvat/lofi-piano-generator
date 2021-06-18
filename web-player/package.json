@@ -12,6 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.2.6",
+    "axios": "^0.21.1",
+    "howler": "^2.2.1",
+    "midi-player-js": "^2.0.14",
+    "midi-sounds-react": "^1.2.54",
     "next": "^10.2.0",
     "postcss": "^8.3.4",
     "react": "^17.0.2",

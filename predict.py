@@ -13,7 +13,7 @@ from keras.layers import Activation
 def generate():
     """ Generate a piano midi file """
     #load the notes used to train the model
-    with open('data/notes', 'rb') as filepath:
+    with open('./data/notes', 'rb') as filepath:
         notes = pickle.load(filepath)
 
     # Get all pitch names
@@ -71,7 +71,7 @@ def create_network(network_input, n_vocab):
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     # Load the weights to each node
-    model.load_weights('lofi-thai-weights-improvement-108-3.5038.hdf5')
+    model.load_weights('./lofi-music-weights-1200-0.1601.hdf5')
 
     return model
 
@@ -111,10 +111,12 @@ def create_midi(prediction_output):
     for pattern in prediction_output:
         # pattern is a chord
         if ('.' in pattern) or pattern.isdigit():
+            print("{Chord}")
             notes_in_chord = pattern.split('.')
             notes = []
             for current_note in notes_in_chord:
                 new_note = note.Note(int(current_note))
+                print(new_note.duration)
                 new_note.storedInstrument = instrument.Piano()
                 notes.append(new_note)
             new_chord = chord.Chord(notes)
@@ -128,12 +130,10 @@ def create_midi(prediction_output):
             output_notes.append(new_note)
 
         # increase offset each iteration so that notes do not stack
-        offset += 0.5
+        offset += 0.25
 
-    print(output_notes)
-    
     midi_stream = stream.Stream(output_notes)
-
+    midi_stream.repeatAppend(note.Note(type='quarter'), 8)
     midi_stream.write('midi', fp='test_output.mid')
 
 if __name__ == '__main__':
